@@ -4,7 +4,7 @@ from math import log10
 from PIL import Image
 import matplotlib.pyplot as plt
 
-image_origin = Image.open('white2.jpg')
+image_origin = Image.open('momo.jpg')
 
 expected = [log10(1 + 1 / d) for d in range(1, 10)]
 
@@ -24,32 +24,10 @@ for i in range(image_origin.width):
 
 #각 픽셀에게 계급 지정
 for i in list:
-    if i <= 256 / 9:
-        intensity_cnt[0] += 1
-
-    elif i <= 256 * 2 / 9:
-        intensity_cnt[1] += 1
-
-    elif i <= 256 * 3 / 9:
-        intensity_cnt[2] += 1
-
-    elif i <= 256 * 4 / 9:
-        intensity_cnt[3] += 1
-
-    elif i <= 256 * 5 / 9:
-        intensity_cnt[4] += 1
-
-    elif i <= 256 * 6 / 9:
-        intensity_cnt[5] += 1
-
-    elif i <= 256 * 7 / 9:
-        intensity_cnt[6] += 1
-
-    elif i <= 256 * 8 / 9:
-        intensity_cnt[7] += 1
-
-    else:
-        intensity_cnt[8] += 1
+    for j in range(9):
+        if i < 256 * (j + 1) / 9:
+            intensity_cnt[j] += 1
+            break
 
 #intensity_cnt 배열 정렬
 intensity_cnt.sort()
